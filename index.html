@@ -65,23 +65,10 @@
                     </div>
                 </div>
                 <div class="flex items-center">
-                    <button id="help-btn" class="p-2 rounded-md text-gray-500 hover:text-primary focus:outline-none relative group" title="帮助">
+                    <button id="help-btn" class="p-2 rounded-md text-gray-500 hover:text-primary focus:outline-none relative" title="帮助">
                         <i class="fa-solid fa-question-circle"></i>
-                        <!-- 新增帮助提示卡片 -->
-                        <div class="absolute right-full bottom-0 mb-2 mr-2 w-72 bg-white rounded-lg shadow-lg p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 pointer-events-none">
-                            <h3 class="font-semibold text-primary mb-2">数据可视化工具帮助</h3>
-                            <p class="text-sm text-gray-600 mb-2">这是一个强大的数据可视化工具，支持Excel、CSV和视频文件的上传和分析。</p>
-                            <ul class="text-xs text-gray-600 space-y-1">
-                                <li><i class="fa-solid fa-upload text-primary mr-1"></i> 上传数据：支持多种格式文件上传</li>
-                                <li><i class="fa-solid fa-chart-pie text-primary mr-1"></i> 可视化：选择不同图表类型展示数据</li>
-                                <li><i class="fa-solid fa-download text-primary mr-1"></i> 导出：将图表保存为多种格式</li>
-                            </ul>
-                            <div class="mt-3 pt-3 border-t border-gray-100">
-                                <p class="text-xs text-gray-500">需要更多帮助？<a href="#" class="text-primary hover:underline">查看完整文档</a></p>
-                            </div>
-                        </div>
                     </button>
-                    <button id="user-btn" class="ml-4 p-2 rounded-md text-gray-500 hover:text-primary focus:outline-none" title="用户中心">
+                    <button id="user-btn" class="ml-4 p-2 rounded-md text-gray-500 hover:text-primary focus:outline-none relative" title="用户中心">
                         <i class="fa-solid fa-user-circle"></i>
                     </button>
                     <button id="export-btn" class="ml-4 block px-4 py-2 rounded-md text-white bg-primary hover:bg-primary/90 transition-colors duration-200 shadow-sm" title="导出图表">
@@ -97,7 +84,7 @@
         <!-- 欢迎信息 -->
         <section class="mb-10">
             <h1 class="text-[clamp(1.75rem,3vw,2.5rem)] font-bold text-gray-900 mb-2">数据可视化工具</h1>
-            <p class="text-gray-600 max-w-3xl">上传您的Excel、CSV或视频文件，快速生成交互式图表和可视化报表，帮助您更好地理解和展示数据。</p>
+            <p class="text-gray-600 max-w-3xl">上传您的Excel或CSV文件，快速生成交互式图表和可视化报表，帮助您更好地理解和展示数据。</p>
         </section>
 
         <!-- 上传区域 -->
@@ -108,7 +95,7 @@
                 </h2>
                 
                 <div id="drop-area" class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-primary transition-colors duration-200 cursor-pointer mb-6">
-                    <input type="file" id="file-input" class="hidden" accept=".xlsx,.xls,.csv,.mp4,.avi,.mov,.mkv">
+                    <input type="file" id="file-input" class="hidden" accept=".xlsx,.xls,.csv">
                     <div id="upload-icon" class="mb-4">
                         <i class="fa-solid fa-file-excel text-5xl text-gray-400"></i>
                     </div>
@@ -116,7 +103,7 @@
                     <button id="browse-btn" class="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors duration-200 shadow-sm">
                         <i class="fa-solid fa-folder-open mr-1"></i> 浏览文件
                     </button>
-                    <p class="text-gray-400 text-sm mt-4">支持 .xlsx, .xls, .csv, .mp4, .avi, .mov, .mkv 格式</p>
+                    <p class="text-gray-400 text-sm mt-4">支持 .xlsx, .xls, .csv 格式</p>
                 </div>
                 
                 <!-- 上传进度条 -->
@@ -158,12 +145,6 @@
                             <tbody id="table-body" class="bg-white divide-y divide-gray-200"></tbody>
                         </table>
                     </div>
-                    <div id="video-preview" class="hidden">
-                        <video controls width="100%" class="rounded-lg">
-                            <source id="video-source" src="" type="">
-                            您的浏览器不支持视频播放。
-                        </video>
-                    </div>
                 </div>
             </div>
         </section>
@@ -180,7 +161,7 @@
                     <div class="bg-gray-50 p-4 rounded-lg">
                         <h3 class="font-medium mb-3">图表类型</h3>
                         <div class="space-y-2" id="chart-types">
-                            <div class="flex items-center p-2 rounded hover:bg-gray-100 cursor-pointer transition-colors duration-200 chart-type-option" data-type="bar">
+                            <div class="flex items-center p-2 rounded hover:bg-gray-100 cursor-pointer transition-colors duration-200 chart-type-option active" data-type="bar">
                                 <i class="fa-solid fa-chart-bar text-primary mr-2"></i>
                                 <span>柱状图</span>
                             </div>
@@ -233,7 +214,7 @@
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-1">颜色主题</label>
                                 <div class="grid grid-cols-3 gap-2">
-                                    <button class="theme-btn h-8 rounded-md bg-blue-500" data-theme="blue"></button>
+                                    <button class="theme-btn h-8 rounded-md bg-blue-500 ring-2 ring-offset-2 ring-primary" data-theme="blue"></button>
                                     <button class="theme-btn h-8 rounded-md bg-green-500" data-theme="green"></button>
                                     <button class="theme-btn h-8 rounded-md bg-purple-500" data-theme="purple"></button>
                                     <button class="theme-btn h-8 rounded-md bg-red-500" data-theme="red"></button>
@@ -242,11 +223,11 @@
                                 </div>
                             </div>
                             <div class="flex items-center">
-                                <input type="checkbox" id="show-legend" class="h-4 w-4 text-primary focus:ring-primary/50 border-gray-300 rounded">
+                                <input type="checkbox" id="show-legend" class="h-4 w-4 text-primary focus:ring-primary/50 border-gray-300 rounded" checked>
                                 <label for="show-legend" class="ml-2 block text-sm text-gray-700">显示图例</label>
                             </div>
                             <div class="flex items-center">
-                                <input type="checkbox" id="show-grid" class="h-4 w-4 text-primary focus:ring-primary/50 border-gray-300 rounded">
+                                <input type="checkbox" id="show-grid" class="h-4 w-4 text-primary focus:ring-primary/50 border-gray-300 rounded" checked>
                                 <label for="show-grid" class="ml-2 block text-sm text-gray-700">显示网格线</label>
                             </div>
                         </div>
@@ -291,7 +272,7 @@
                     <div class="bg-gray-50 p-4 rounded-lg">
                         <h3 class="font-medium mb-3">导出格式</h3>
                         <div class="space-y-2">
-                            <div class="flex items-center p-2 rounded hover:bg-gray-100 cursor-pointer transition-colors duration-200 export-option" data-format="png">
+                            <div class="flex items-center p-2 rounded hover:bg-gray-100 cursor-pointer transition-colors duration-200 export-option active" data-format="png">
                                 <i class="fa-solid fa-file-image text-primary mr-2"></i>
                                 <span>PNG 图片</span>
                             </div>
@@ -382,19 +363,36 @@
                 <p class="text-gray-500 text-sm">© 2025 DataViz. 保留所有权利。</p>
                 
                 <div class="mt-4 md:mt-0 flex space-x-6">
-                    <a href="#" class="text-gray-500 hover:text-primary text-sm transition-colors duration-200">隐私政策</a>
-                    <a href="#" class="text-gray-500 hover:text-primary text-sm transition-colors duration-200">使用条款</a>
-                    <a href="#" class="text-gray-500 hover:text-primary text-sm transition-colors duration-200">联系我们</a>
+                    <a href="#" class="text-gray-500 hover:text-primary text-sm transition-colors duration-200" onclick="showModal('privacy-policy')">隐私政策</a>
+                    <a href="#" class="text-gray-500 hover:text-primary text-sm transition-colors duration-200" onclick="showModal('terms-of-service')">使用条款</a>
+                    <a href="#" class="text-gray-500 hover:text-primary text-sm transition-colors duration-200" onclick="showModal('contact-us')">联系我们</a>
                 </div>
             </div>
         </div>
     </footer>
 
+    <!-- 模态框 -->
+    <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 id="modal-title" class="text-lg font-semibold text-gray-900">模态框标题</h3>
+                    <button id="close-modal" class="text-gray-400 hover:text-gray-600">
+                        <i class="fa-solid fa-times"></i>
+                    </button>
+                </div>
+                <div id="modal-content" class="text-gray-600">
+                    <!-- 模态框内容将通过JavaScript动态加载 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- 通知组件 -->
     <div id="notification" class="fixed top-4 right-4 p-4 rounded-lg shadow-lg transform transition-all duration-300 translate-x-full opacity-0 z-50 flex items-center">
         <i id="notification-icon" class="mr-2"></i>
         <span id="notification-message"></span>
-        <button class="ml-4 text-gray-400 hover:text-gray-600">
+        <button class="ml-4 text-gray-400 hover:text-gray-600" onclick="hideNotification()">
             <i class="fa-solid fa-times"></i>
         </button>
     </div>
@@ -424,8 +422,6 @@
         const tablePreview = document.getElementById('table-preview');
         const tableHeader = document.getElementById('table-header');
         const tableBody = document.getElementById('table-body');
-        const videoPreview = document.getElementById('video-preview');
-        const videoSource = document.getElementById('video-source');
         const xAxisSelect = document.getElementById('x-axis-select');
         const yAxisSelect = document.getElementById('y-axis-select');
         const chartTitle = document.getElementById('chart-title');
@@ -446,6 +442,12 @@
         const notificationMessage = document.getElementById('notification-message');
         const notificationIcon = document.getElementById('notification-icon');
         const helpBtn = document.getElementById('help-btn');
+        const userBtn = document.getElementById('user-btn');
+        const userMenu = document.getElementById('user-menu');
+        const modal = document.getElementById('modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalContent = document.getElementById('modal-content');
+        const closeModal = document.getElementById('close-modal');
         
         // 导航栏滚动效果
         window.addEventListener('scroll', () => {
@@ -453,6 +455,19 @@
                 navbar.classList.add('shadow-md', 'bg-white/95', 'backdrop-blur-sm');
             } else {
                 navbar.classList.remove('shadow-md', 'bg-white/95', 'backdrop-blur-sm');
+            }
+        });
+        
+        // 用户菜单切换
+        userBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            userMenu.classList.toggle('hidden');
+        });
+        
+        // 点击页面其他地方关闭用户菜单
+        document.addEventListener('click', (e) => {
+            if (!userBtn.contains(e.target)) {
+                userMenu.classList.add('hidden');
             }
         });
         
@@ -516,8 +531,7 @@
             // 验证文件类型
             const fileTypes = {
                 excel: ['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-excel', '.xlsx', '.xls'],
-                csv: ['text/csv', '.csv'],
-                video: ['video/mp4', 'video/avi', 'video/mov', 'video/mkv', '.mp4', '.avi', '.mov', '.mkv']
+                csv: ['text/csv', '.csv']
             };
             
             let isValidType = false;
@@ -530,7 +544,7 @@
             }
             
             if (!isValidType) {
-                showNotification('错误', '请上传Excel、CSV或视频文件', 'error');
+                showNotification('错误', '请上传Excel或CSV文件', 'error');
                 uploadProgress.classList.add('hidden');
                 return;
             }
@@ -561,15 +575,9 @@
                         const lines = text.split('\n');
                         data = lines.map(line => line.split(','));
                     }
-                    // 处理视频文件
-                    else if (fileType === 'video') {
-                        const videoUrl = URL.createObjectURL(file);
-                        videoSource.src = videoUrl;
-                        videoSource.type = file.type;
-                    }
                     
                     // 检查数据是否有效
-                    if ((fileType === 'excel' || fileType === 'csv') && (!data || data.length <= 1)) {
+                    if (!data || data.length <= 1) {
                         showNotification('错误', '文件中没有足够的数据', 'error');
                         uploadProgress.classList.add('hidden');
                         return;
@@ -579,20 +587,11 @@
                     fileInfo.classList.remove('hidden');
                     dataPreview.classList.remove('hidden');
                     
-                    // 显示适当的预览
-                    if (fileType === 'video') {
-                        videoPreview.classList.remove('hidden');
-                        tablePreview.classList.add('hidden');
-                    } else {
-                        videoPreview.classList.add('hidden');
-                        tablePreview.classList.remove('hidden');
-                        
-                        // 填充表格预览
-                        populateTablePreview();
-                        
-                        // 填充列选择器
-                        populateColumnSelectors();
-                    }
+                    // 填充表格预览
+                    populateTablePreview();
+                    
+                    // 填充列选择器
+                    populateColumnSelectors();
                     
                     // 隐藏进度条
                     uploadProgress.classList.add('hidden');
@@ -614,19 +613,6 @@
                 reader.readAsBinaryString(file);
             } else if (fileType === 'csv') {
                 reader.readAsText(file);
-            } else if (fileType === 'video') {
-                // 视频文件不需要读取内容，直接使用URL
-                uploadProgress.classList.add('hidden');
-                fileInfo.classList.remove('hidden');
-                dataPreview.classList.remove('hidden');
-                videoPreview.classList.remove('hidden');
-                tablePreview.classList.add('hidden');
-                
-                const videoUrl = URL.createObjectURL(file);
-                videoSource.src = videoUrl;
-                videoSource.type = file.type;
-                
-                showNotification('成功', '视频上传成功', 'success');
             }
         }
         
@@ -648,10 +634,6 @@
                     iconClass = 'fa-file-csv';
                     iconColor = 'text-blue-600';
                     break;
-                case 'video':
-                    iconClass = 'fa-file-video';
-                    iconColor = 'text-red-600';
-                    break;
                 default:
                     iconClass = 'fa-file';
                     iconColor = 'text-gray-400';
@@ -668,8 +650,6 @@
                     return 'Excel 文件';
                 case 'csv':
                     return 'CSV 文件';
-                case 'video':
-                    return '视频文件';
                 default:
                     return '文件';
             }
@@ -772,8 +752,6 @@
             fileType = null;
             fileInfo.classList.add('hidden');
             dataPreview.classList.add('hidden');
-            tablePreview.classList.remove('hidden');
-            videoPreview.classList.add('hidden');
             xAxisSelect.innerHTML = '<option value="">请选择...</option>';
             yAxisSelect.innerHTML = '<option value="">请选择...</option>';
             
@@ -809,7 +787,7 @@
             btn.addEventListener('click', () => {
                 // 移除所有选中状态
                 document.querySelectorAll('.theme-btn').forEach(b => {
-                    b.classList.remove('ring-2', 'ring-offset-2');
+                    b.classList.remove('ring-2', 'ring-offset-2', 'ring-primary');
                 });
                 
                 // 添加选中状态
@@ -822,7 +800,7 @@
         
         // 生成图表
         generateChart.addEventListener('click', () => {
-            if (!data || fileType === 'video') {
+            if (!data) {
                 showNotification('错误', '请先上传Excel或CSV数据文件', 'error');
                 return;
             }
@@ -946,4 +924,370 @@
                     animations: {
                         tension: {
                             duration: 1000,
-                            easing: 'linear'
+                            easing: 'linear',
+                            from: 0.3,
+                            to: 0,
+                            loop: false
+                        }
+                    }
+                }
+            };
+            
+            // 如果已有图表，销毁它
+            if (chart) {
+                chart.destroy();
+            }
+            
+            // 创建新图表
+            chart = new Chart(chartCanvas, config);
+            
+            // 显示图表，隐藏无图表消息
+            chartContainer.classList.remove('hidden');
+            noChartMessage.classList.add('hidden');
+            
+            showNotification('成功', '图表生成成功', 'success');
+        });
+        
+        // 获取主题颜色
+        function getThemeColors(count) {
+            const themes = {
+                blue: [
+                    'rgba(22, 93, 255, 0.8)',
+                    'rgba(22, 93, 255, 0.6)',
+                    'rgba(22, 93, 255, 0.4)',
+                    'rgba(22, 93, 255, 0.3)',
+                    'rgba(22, 93, 255, 0.2)'
+                ],
+                green: [
+                    'rgba(34, 197, 94, 0.8)',
+                    'rgba(34, 197, 94, 0.6)',
+                    'rgba(34, 197, 94, 0.4)',
+                    'rgba(34, 197, 94, 0.3)',
+                    'rgba(34, 197, 94, 0.2)'
+                ],
+                purple: [
+                    'rgba(139, 92, 246, 0.8)',
+                    'rgba(139, 92, 246, 0.6)',
+                    'rgba(139, 92, 246, 0.4)',
+                    'rgba(139, 92, 246, 0.3)',
+                    'rgba(139, 92, 246, 0.2)'
+                ],
+                red: [
+                    'rgba(239, 68, 68, 0.8)',
+                    'rgba(239, 68, 68, 0.6)',
+                    'rgba(239, 68, 68, 0.4)',
+                    'rgba(239, 68, 68, 0.3)',
+                    'rgba(239, 68, 68, 0.2)'
+                ],
+                yellow: [
+                    'rgba(234, 179, 8, 0.8)',
+                    'rgba(234, 179, 8, 0.6)',
+                    'rgba(234, 179, 8, 0.4)',
+                    'rgba(234, 179, 8, 0.3)',
+                    'rgba(234, 179, 8, 0.2)'
+                ],
+                gray: [
+                    'rgba(75, 85, 99, 0.8)',
+                    'rgba(75, 85, 99, 0.6)',
+                    'rgba(75, 85, 99, 0.4)',
+                    'rgba(75, 85, 99, 0.3)',
+                    'rgba(75, 85, 99, 0.2)'
+                ]
+            };
+            
+            // 如果只需要一种颜色
+            if (count === 1) {
+                return themes[selectedTheme][0];
+            }
+            
+            // 否则返回颜色数组
+            const colors = themes[selectedTheme];
+            const result = [];
+            
+            for (let i = 0; i < count; i++) {
+                result.push(colors[i % colors.length]);
+            }
+            
+            return result;
+        }
+        
+        // 导出图表
+        exportChart.addEventListener('click', () => {
+            if (!chart) {
+                showNotification('错误', '请先生成图表', 'error');
+                return;
+            }
+            
+            const format = document.querySelector('.export-option.bg-primary\\/10')?.dataset.format || 'png';
+            const filename = exportFilename.value || 'data-visualization';
+            const width = parseInt(exportWidth.value) || 800;
+            const height = parseInt(exportHeight.value) || 600;
+            
+            // 临时调整画布大小以获得更高分辨率
+            const originalWidth = chart.canvas.width;
+            const originalHeight = chart.canvas.height;
+            
+            chart.canvas.width = width;
+            chart.canvas.height = height;
+            chart.canvas.style.width = `${width}px`;
+            chart.canvas.style.height = `${height}px`;
+            
+            // 更新图表以适应新尺寸
+            chart.resize();
+            chart.update();
+            
+            let url = '';
+            
+            // 添加背景色（如果需要）
+            if (bgWhite.checked) {
+                const ctx = chart.canvas.getContext('2d');
+                const imgData = ctx.getImageData(0, 0, width, height);
+                
+                // 创建一个带有白色背景的新画布
+                const tempCanvas = document.createElement('canvas');
+                tempCanvas.width = width;
+                tempCanvas.height = height;
+                const tempCtx = tempCanvas.getContext('2d');
+                
+                // 填充白色背景
+                tempCtx.fillStyle = 'white';
+                tempCtx.fillRect(0, 0, width, height);
+                
+                // 绘制原始图表
+                tempCtx.drawImage(chart.canvas, 0, 0);
+                
+                // 获取带有背景的图像URL
+                if (format === 'png') {
+                    url = tempCanvas.toDataURL('image/png');
+                } else if (format === 'jpg') {
+                    url = tempCanvas.toDataURL('image/jpeg', 1.0);
+                }
+            } else {
+                // 透明背景
+                if (format === 'png') {
+                    url = chart.canvas.toDataURL('image/png');
+                } else if (format === 'jpg') {
+                    url = chart.canvas.toDataURL('image/jpeg', 1.0);
+                }
+            }
+            
+            // 对于SVG和PDF格式
+            if (format === 'svg') {
+                // 简单的SVG导出（实际项目中可能需要更复杂的实现）
+                const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                svg.setAttribute('width', width);
+                svg.setAttribute('height', height);
+                svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+                
+                const image = document.createElementNS('http://www.w3.org/2000/svg', 'image');
+                image.setAttribute('width', width);
+                image.setAttribute('height', height);
+                image.setAttribute('href', url);
+                
+                svg.appendChild(image);
+                
+                const svgData = new XMLSerializer().serializeToString(svg);
+                const blob = new Blob([svgData], {type: 'image/svg+xml'});
+                url = URL.createObjectURL(blob);
+            } else if (format === 'pdf') {
+                // 注意：实际项目中应使用适当的PDF库（如jsPDF）
+                showNotification('提示', 'PDF导出功能需要额外的库支持', 'info');
+                url = chart.canvas.toDataURL('image/png');
+            }
+            
+            // 创建下载链接
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `${filename}.${format}`;
+            link.click();
+            
+            // 恢复原始画布大小
+            chart.canvas.width = originalWidth;
+            chart.canvas.height = originalHeight;
+            chart.canvas.style.width = `${originalWidth}px`;
+            chart.canvas.style.height = `${originalHeight}px`;
+            
+            // 更新图表
+            chart.resize();
+            chart.update();
+            
+            showNotification('成功', `图表已导出为 ${format.toUpperCase()} 格式`, 'success');
+        });
+        
+        // 帮助按钮
+        helpBtn.addEventListener('click', () => {
+            showModal('help');
+        });
+        
+        // 显示模态框
+        function showModal(type) {
+            // 设置模态框标题和内容
+            switch (type) {
+                case 'privacy-policy':
+                    modalTitle.textContent = '隐私政策';
+                    modalContent.innerHTML = `
+                        <h3 class="text-lg font-medium mb-2">数据收集</h3>
+                        <p class="mb-4">我们不会收集您上传的数据内容。所有数据仅在您的浏览器本地处理，不会传输到我们的服务器。</p>
+                        
+                        <h3 class="text-lg font-medium mb-2">数据使用</h3>
+                        <p class="mb-4">我们仅使用您上传的数据来生成可视化图表，不会用于其他目的。</p>
+                        
+                        <h3 class="text-lg font-medium mb-2">数据存储</h3>
+                        <p class="mb-4">我们不会存储您上传的数据。当您关闭浏览器或刷新页面时，所有数据将被永久删除。</p>
+                        
+                        <h3 class="text-lg font-medium mb-2">第三方服务</h3>
+                        <p class="mb-4">本应用可能使用第三方服务（如CDN）来提供更好的用户体验，但这些服务不会访问您的数据内容。</p>
+                        
+                        <h3 class="text-lg font-medium mb-2">隐私政策变更</h3>
+                        <p>我们可能会不时更新本隐私政策。当我们进行重大变更时，我们将通过在网站上发布新的隐私政策来通知您。</p>
+                    `;
+                    break;
+                    
+                case 'terms-of-service':
+                    modalTitle.textContent = '使用条款';
+                    modalContent.innerHTML = `
+                        <h3 class="text-lg font-medium mb-2">服务使用</h3>
+                        <p class="mb-4">您同意仅将本服务用于合法目的，并遵守所有适用的法律法规。</p>
+                        
+                        <h3 class="text-lg font-medium mb-2">数据责任</h3>
+                        <p class="mb-4">您对您上传到本服务的数据负全部责任。我们不对任何数据丢失、损坏或误用负责。</p>
+                        
+                        <h3 class="text-lg font-medium mb-2">服务终止</h3>
+                        <p class="mb-4">我们保留在任何时候终止或暂停您使用本服务的权利，无需事先通知。</p>
+                        
+                        <h3 class="text-lg font-medium mb-2">免责声明</h3>
+                        <p class="mb-4">本服务按"原样"提供，不提供任何形式的保证，无论是明示的还是暗示的。</p>
+                        
+                        <h3 class="text-lg font-medium mb-2">赔偿</h3>
+                        <p>您同意赔偿我们因您使用本服务而产生的任何索赔、损失或费用。</p>
+                    `;
+                    break;
+                    
+                case 'contact-us':
+                    modalTitle.textContent = '联系我们';
+                    modalContent.innerHTML = `
+                        <p class="mb-4">如果您有任何问题、建议或反馈，请通过以下方式联系我们：</p>
+                        
+                        <div class="space-y-3 mb-4">
+                            <div class="flex items-start">
+                                <i class="fa-solid fa-envelope text-primary mt-1 mr-3"></i>
+                                <div>
+                                    <p class="font-medium">电子邮件</p>
+                                    <p>support@dataviz.example.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <i class="fa-solid fa-comment text-primary mt-1 mr-3"></i>
+                                <div>
+                                    <p class="font-medium">在线聊天</p>
+                                    <p>周一至周五，9:00-18:00 (GMT+8)</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <i class="fa-solid fa-map-marker text-primary mt-1 mr-3"></i>
+                                <div>
+                                    <p class="font-medium">地址</p>
+                                    <p>北京市海淀区科技园区100号</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <p>我们会在收到您的信息后尽快回复。感谢您的支持！</p>
+                    `;
+                    break;
+                    
+                case 'help':
+                    modalTitle.textContent = '帮助中心';
+                    modalContent.innerHTML = `
+                        <h3 class="text-lg font-medium mb-2">如何上传数据？</h3>
+                        <p class="mb-4">您可以通过拖放文件到指定区域，或点击"浏览文件"按钮选择Excel或CSV文件上传。</p>
+                        
+                        <h3 class="text-lg font-medium mb-2">如何创建图表？</h3>
+                        <p class="mb-4">上传数据后，选择X轴和Y轴的数据列，选择图表类型，然后点击"生成图表"按钮。</p>
+                        
+                        <h3 class="text-lg font-medium mb-2">如何导出图表？</h3>
+                        <p class="mb-4">在生成图表后，您可以在"导出设置"中选择格式和选项，然后点击"导出图表"按钮。</p>
+                        
+                        <h3 class="text-lg font-medium mb-2">支持哪些文件格式？</h3>
+                        <p class="mb-4">目前支持Excel (.xlsx, .xls) 和CSV (.csv) 格式的文件。</p>
+                        
+                        <h3 class="text-lg font-medium mb-2">遇到问题怎么办？</h3>
+                        <p>如果您在使用过程中遇到任何问题，请点击页脚的"联系我们"获取支持。</p>
+                    `;
+                    break;
+            }
+            
+            // 显示模态框
+            modal.classList.remove('hidden');
+        }
+        
+        // 关闭模态框
+        closeModal.addEventListener('click', () => {
+            modal.classList.add('hidden');
+        });
+        
+        // 点击模态框外部关闭
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.add('hidden');
+            }
+        });
+        
+        // 显示通知
+        function showNotification(title, message, type) {
+            notificationMessage.textContent = message;
+            
+            // 设置图标和样式
+            if (type === 'success') {
+                notification.className = 'fixed top-4 right-4 p-4 rounded-lg shadow-lg transform transition-all duration-300 translate-x-full opacity-0 z-50 flex items-center bg-green-50 text-green-800';
+                notificationIcon.className = 'fa-solid fa-check-circle text-green-500';
+            } else if (type === 'error') {
+                notification.className = 'fixed top-4 right-4 p-4 rounded-lg shadow-lg transform transition-all duration-300 translate-x-full opacity-0 z-50 flex items-center bg-red-50 text-red-800';
+                notificationIcon.className = 'fa-solid fa-exclamation-circle text-red-500';
+            } else if (type === 'info') {
+                notification.className = 'fixed top-4 right-4 p-4 rounded-lg shadow-lg transform transition-all duration-300 translate-x-full opacity-0 z-50 flex items-center bg-blue-50 text-blue-800';
+                notificationIcon.className = 'fa-solid fa-info-circle text-blue-500';
+            } else if (type === 'warning') {
+                notification.className = 'fixed top-4 right-4 p-4 rounded-lg shadow-lg transform transition-all duration-300 translate-x-full opacity-0 z-50 flex items-center bg-yellow-50 text-yellow-800';
+                notificationIcon.className = 'fa-solid fa-exclamation-triangle text-yellow-500';
+            }
+            
+            // 显示通知
+            setTimeout(() => {
+                notification.classList.remove('translate-x-full', 'opacity-0');
+            }, 100);
+            
+            // 自动隐藏通知
+            setTimeout(() => {
+                hideNotification();
+            }, 5000);
+        }
+        
+        // 隐藏通知
+        function hideNotification() {
+            notification.classList.add('translate-x-full', 'opacity-0');
+        }
+        
+        // 导出格式选择
+        document.querySelectorAll('.export-option').forEach(option => {
+            option.addEventListener('click', () => {
+                // 移除所有选中状态
+                document.querySelectorAll('.export-option').forEach(opt => {
+                    opt.classList.remove('bg-primary/10', 'text-primary');
+                });
+                
+                // 添加选中状态
+                option.classList.add('bg-primary/10', 'text-primary');
+            });
+        });
+        
+        // 初始化 - 设置默认选中状态
+        document.addEventListener('DOMContentLoaded', () => {
+            // 设置默认选中的导出格式
+            document.querySelector('.export-option[data-format="png"]').classList.add('bg-primary/10', 'text-primary');
+        });
+    </script>
+</body>
+</html>
